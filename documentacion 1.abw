@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" xmlns:ct="http://www.abisource.com/changetracking.dtd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:svg="http://www.w3.org/2000/svg" xid-max="516" xmlns:dc="http://purl.org/dc/elements/1.1/" styles="unlocked" fileformat="1.1" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.9.1" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:es; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="abiword.date_last_changed">Sun Apr 27 21:01:36 2025
+</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="dc.creator">roussel</m>
+<m key="dc.date">Sun Apr 27 21:01:36 2025
+</m>
+<m key="dc.format">application/x-abiword</m>
+</metadata>
+<rdf>
+</rdf>
+<history version="1" edit-time="812" last-saved="1745787696" uid="ea674302-23a8-11f0-8e4a-a1c59978f7c5">
+<version id="1" started="1745787696" uid="ce5ac466-23aa-11f0-8e4a-a1c59978f7c5" auto="0" top-xid="516"/>
+</history>
+<styles>
+<s type="P" name="Normal" followedby="Current Settings" props="font-family:Times New Roman; margin-top:0pt; color:000000; margin-left:0pt; text-position:normal; widows:2; font-style:normal; text-indent:0in; font-variant:normal; font-weight:normal; margin-right:0pt; font-size:12pt; text-decoration:none; margin-bottom:0pt; line-height:1.0; bgcolor:transparent; text-align:left; font-stretch:normal"/>
+</styles>
+<lists>
+<l id="1000" parentid="0" type="5" start-value="0" list-delim="%L" list-decimal="NULL"/>
+</lists>
+<pagesize pagetype="A4" orientation="portrait" width="8.267717" height="11.692913" units="in" page-scale="1.000000"/>
+<section xid="515" props="page-margin-footer:0.5000in; page-margin-header:0.5000in; page-margin-right:1.0000in; page-margin-left:1.0000in; page-margin-top:1.0000in; page-margin-bottom:1.0000in">
+<p style="Normal" xid="516" props="text-align:center; dom-dir:ltr"><c props="font-weight:bold; font-size:22pt">Explicación detallada de roupycore.py</c></p>
+<p style="Normal" xid="1" props="text-align:left; dom-dir:ltr"><c props="text-decoration:underline; font-weight:bold">1. Importaciones</c></p>
+<p style="Normal" xid="2" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="5" props="text-align:left; dom-dir:ltr"><c props="font-style:normal; font-weight:bold">import sys</c></p>
+<p style="Normal" xid="6" props="text-align:left; dom-dir:ltr"><c props="font-style:normal; font-weight:bold">import re</c></p>
+<p style="Normal" xid="243" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="7" props="text-align:left; dom-dir:ltr"><c props="font-style:italic">i</c><c props="font-weight:bold; font-style:italic">mport sys:</c></p>
+<p style="Normal" xid="8" props="text-align:left; dom-dir:ltr"><c>Carga una herramienta que permite a nuestro programa interactuar con el sistema operativo (por ejemplo, leer el nombre del archivo que el usuario quiere abrir).</c></p>
+<p style="Normal" xid="9" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="10" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">import re:</c></p>
+<p style="Normal" xid="11" props="text-align:left; dom-dir:ltr"><c>Carga otra herramienta que sirve para trabajar con patrones de texto (por ejemplo, buscar palabras específicas dentro de un texto).</c></p>
+<p style="Normal" xid="12" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="13" props="text-align:left; dom-dir:ltr"><c props="text-decoration:underline; font-weight:bold">2. El "Lexer" (convertir el texto en tokens)</c></p>
+<p style="Normal" xid="244" props="text-align:left; dom-dir:ltr"><c props="text-decoration:underline; font-weight:bold"></c></p>
+<p style="Normal" xid="17" props="text-align:left; dom-dir:ltr"><c props="font-weight:bold">def lexer(code):</c></p>
+<p style="Normal" xid="18" props="text-align:left; dom-dir:ltr"><c>Crea una función llamada lexer que recibe como entrada un pedacito de texto llamado code.</c></p>
+<p style="Normal" xid="19" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="20" props="text-align:left; dom-dir:ltr"><c>El trabajo de esta función es:</c></p>
+<p style="Normal" xid="21" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p level="1" listid="1000" parentid="0" style="Normal" xid="22" props="list-delim:%L; list-decimal:NULL; list-style:Bullet List; start-value:0; margin-left:0.5000in; text-indent:-0.3000in; dom-dir:ltr; text-align:left; field-font:Liberation Sans"><c props="list-tag:1001"></c><field type="list_label" xid="245" props="width:0in; font-family:Times New Roman; display:inline; font-style:normal; font-weight:normal; bgcolor:transparent; lang:es; text-position:normal; text-transform:none; homogeneous:1; color:000000; font-variant:normal; text-decoration:none; font-size:12pt; height:0in; list-style:Bullet List; font-stretch:normal"></field><c props="width:0in; font-family:Times New Roman; display:inline; font-style:normal; font-weight:normal; bgcolor:transparent; lang:es; text-position:normal; text-transform:none; homogeneous:1; color:000000; font-variant:normal; text-decoration:none; font-size:12pt; height:0in; list-style:Bullet List; font-stretch:normal">	</c><c>Leer el texto,</c></p>
+<p level="0" listid="0" style="Normal" xid="23" props="list-delim:%L; list-decimal:NULL; list-style:Bullet List; start-value:0; margin-left:0.5000in; text-indent:0.0000in; dom-dir:ltr; text-align:left; field-font:Liberation Sans"><c props="list-tag:1002"></c></p>
+<p level="1" listid="1000" style="Normal" xid="24" props="list-delim:%L; list-decimal:NULL; list-style:Bullet List; start-value:0; margin-left:0.5000in; text-indent:-0.3000in; dom-dir:ltr; text-align:left; field-font:Liberation Sans"><c props="list-tag:1003"></c><field type="list_label" xid="247" props="width:0in; font-family:Times New Roman; display:inline; font-style:normal; font-weight:normal; bgcolor:transparent; lang:es; text-position:normal; text-transform:none; homogeneous:1; color:000000; font-variant:normal; text-decoration:none; font-size:12pt; height:0in; list-style:Bullet List; font-stretch:normal"></field><c props="width:0in; font-family:Times New Roman; display:inline; font-style:normal; font-weight:normal; bgcolor:transparent; lang:es; text-position:normal; text-transform:none; homogeneous:1; color:000000; font-variant:normal; text-decoration:none; font-size:12pt; height:0in; list-style:Bullet List; font-stretch:normal">	</c><c>Reconocer qué significa cada pedazo,</c></p>
+<p level="0" listid="0" style="Normal" xid="25" props="list-delim:%L; list-decimal:NULL; list-style:Bullet List; start-value:0; margin-left:0.5000in; text-indent:0.0000in; dom-dir:ltr; text-align:left; field-font:Liberation Sans"><c props="list-tag:1004"></c></p>
+<p level="1" listid="1000" style="Normal" xid="26" props="list-delim:%L; list-decimal:NULL; list-style:Bullet List; start-value:0; margin-left:0.5000in; text-indent:-0.3000in; dom-dir:ltr; text-align:left; field-font:Liberation Sans"><c props="list-tag:1005"></c><field type="list_label" xid="249" props="width:0in; font-family:Times New Roman; display:inline; font-style:normal; font-weight:normal; bgcolor:transparent; lang:es; text-position:normal; text-transform:none; homogeneous:1; color:000000; font-variant:normal; text-decoration:none; font-size:12pt; height:0in; list-style:Bullet List; font-stretch:normal"></field><c props="width:0in; font-family:Times New Roman; display:inline; font-style:normal; font-weight:normal; bgcolor:transparent; lang:es; text-position:normal; text-transform:none; homogeneous:1; color:000000; font-variant:normal; text-decoration:none; font-size:12pt; height:0in; list-style:Bullet List; font-stretch:normal">	</c><c>Y convertirlo en tokens (como pequeñas etiquetas que dicen "esto es una palabra", "esto es un igual", "esto es un texto", etc.).</c></p>
+<p style="Normal" xid="252" props="text-align:left; text-indent:0.0000in; dom-dir:ltr; margin-left:0.5000in"><c props="list-tag:1008"></c></p>
+<p style="Normal" xid="255" props="text-align:left; text-indent:0.0000in; dom-dir:ltr; margin-left:0.5000in"><c></c><c props="font-weight:bold">Dentro de lexer:</c></p>
+<p style="Normal" xid="30" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="33" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">	token_patterns = [</c></p>
+<p style="Normal" xid="34" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		('STRING', r'"[^"]*"'),</c></p>
+<p style="Normal" xid="35" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		('ID', r'[A-Za-z_][A-Za-z0-9_]*'),</c></p>
+<p style="Normal" xid="36" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		('ASSIGN', r'='),</c></p>
+<p style="Normal" xid="37" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		('NEWLINE', r'\n'),</c></p>
+<p style="Normal" xid="38" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		('SKIP', r'[ \t]+'),</c></p>
+<p style="Normal" xid="39" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		('MISMATCH', r'.'),</c></p>
+<p style="Normal" xid="40" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">	]</c></p>
+<p style="Normal" xid="41" props="text-align:left; dom-dir:ltr"><c>Aquí estamos definiendo patrones para saber qué tipo de cosas queremos reconocer:</c></p>
+<p style="Normal" xid="42" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="43" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="44" props="text-align:left; dom-dir:ltr"><c></c></p>
+<table xid="437" props="table-row-heights:0.62cm/0.50cm/0.50cm/0.50cm/0.50cm/0.50cm/0.62cm/">
+<cell xid="438" props="bot-attach:1; left-attach:0; right-attach:1; top-attach:0">
+<p style="Normal" xid="439" props="text-align:center"><c props="bgcolor:00ffff; font-weight:bold; text-decoration:underline; font-size:14pt; font-style:italic">NOMBRE DEL TOKEN</c></p>
+</cell>
+<cell xid="441" props="bot-attach:1; left-attach:1; right-attach:2; top-attach:0">
+<p style="Normal" xid="442" props="text-align:center"><c props="bgcolor:00ffff; font-weight:bold; text-decoration:underline; font-style:italic">QUE DETECTA</c></p>
+</cell>
+<cell xid="444" props="bot-attach:1; left-attach:2; right-attach:3; top-attach:0">
+<p style="Normal" xid="445" props="text-align:center"><c props="bgcolor:00ffff; font-weight:bold; text-decoration:underline; font-style:italic">EJEMPLO</c></p>
+</cell>
+<cell xid="447" props="bot-attach:2; left-attach:0; right-attach:1; top-attach:1">
+<p style="Normal" xid="448"><c props="font-size:11pt; font-family:Serif; font-style:italic">STRING</c></p>
+</cell>
+<cell xid="450" props="bot-attach:2; left-attach:1; right-attach:2; top-attach:1">
+<p style="Normal" xid="451"><c props="font-size:11pt; font-family:Serif; font-style:italic">TEXTO ENTRE COMILLAS</c></p>
+</cell>
+<cell xid="453" props="bot-attach:2; left-attach:2; right-attach:3; top-attach:1">
+<p style="Normal" xid="454"><c props="font-size:11pt; font-family:Serif; font-style:italic">“HOLA MUNDO” </c></p>
+</cell>
+<cell xid="456" props="bot-attach:3; left-attach:0; right-attach:1; top-attach:2">
+<p style="Normal" xid="457"><c props="font-size:11pt; font-family:Serif; font-style:italic">ID</c></p>
+</cell>
+<cell xid="459" props="bot-attach:3; left-attach:1; right-attach:2; top-attach:2">
+<p style="Normal" xid="460"><c props="font-size:11pt; font-family:Serif; font-style:italic">NOMBRE DE ALGO</c></p>
+</cell>
+<cell xid="462" props="bot-attach:3; left-attach:2; right-attach:3; top-attach:2">
+<p style="Normal" xid="463"><c props="font-family:Serif; font-size:11pt; color:000000; text-decoration:none; text-position:normal; font-weight:normal; font-style:italic; lang:-none-"> show, nombre, edad, etc...</c></p>
+</cell>
+<cell xid="465" props="bot-attach:4; left-attach:0; right-attach:1; top-attach:3">
+<p style="Normal" xid="466"><c props="font-size:11pt; font-family:Serif; font-style:italic">ASSIGN</c></p>
+</cell>
+<cell xid="468" props="bot-attach:4; left-attach:1; right-attach:2; top-attach:3">
+<p style="Normal" xid="469"><c props="font-size:11pt; font-family:Serif; font-style:italic">El simbolo</c></p>
+</cell>
+<cell xid="471" props="bot-attach:4; left-attach:2; right-attach:3; top-attach:3">
+<p style="Normal" xid="472"><c props="font-size:11pt; font-family:Serif; font-style:italic"> =</c></p>
+</cell>
+<cell xid="474" props="bot-attach:5; left-attach:0; right-attach:1; top-attach:4">
+<p style="Normal" xid="475"><c props="font-size:11pt; font-family:Serif; font-style:italic">NEWLINE</c></p>
+</cell>
+<cell xid="477" props="bot-attach:5; left-attach:1; right-attach:2; top-attach:4">
+<p style="Normal" xid="478"><c props="font-size:11pt; font-family:Serif; font-style:italic">UN SALTO DE LINEA</c></p>
+</cell>
+<cell xid="480" props="bot-attach:5; left-attach:2; right-attach:3; top-attach:4">
+<p style="Normal" xid="481"><c props="font-size:11pt; font-family:Serif; font-style:italic">(Cuando apretas “Enter”)</c></p>
+</cell>
+<cell xid="483" props="bot-attach:6; left-attach:0; right-attach:1; top-attach:5">
+<p style="Normal" xid="484"><c props="font-size:11pt; font-family:Serif; font-style:italic">SKIP</c></p>
+</cell>
+<cell xid="486" props="bot-attach:6; left-attach:1; right-attach:2; top-attach:5">
+<p style="Normal" xid="487"><c props="font-size:11pt; font-family:Serif; font-style:italic">Espacios o tabulaciones</c></p>
+</cell>
+<cell xid="489" props="bot-attach:6; left-attach:2; right-attach:3; top-attach:5">
+<p style="Normal" xid="490"><c props="font-size:11pt; font-family:Serif; font-style:italic">““ o “\t” </c></p>
+</cell>
+<cell xid="492" props="bot-attach:7; left-attach:0; right-attach:1; top-attach:6">
+<p style="Normal" xid="493"><c props="font-size:11pt; font-family:Serif; font-style:italic">MISMATCH </c></p>
+</cell>
+<cell xid="495" props="bot-attach:7; left-attach:1; right-attach:2; top-attach:6">
+<p style="Normal" xid="496"><c props="font-size:11pt; font-family:Serif; font-style:italic">Cualquier cosa que no reconocimos</c></p>
+</cell>
+<cell xid="498" props="bot-attach:7; left-attach:2; right-attach:3; top-attach:6">
+<p style="Normal" xid="499"><c props="font-size:11pt; font-family:Serif; font-style:italic">Un error</c></p>
+</cell>
+</table>
+<p style="Normal" xid="436" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="56" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">token_regex = '|'.join(f'(?P&lt;{pair[0]}&gt;{pair[1]})' for pair in token_patterns)</c></p>
+<p style="Normal" xid="57" props="text-align:left; dom-dir:ltr"><c>Esta línea junta todos los patrones en una sola regla gigante para poder buscar todos los tipos de tokens de una sola vez.</c></p>
+<p style="Normal" xid="58" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="59" props="text-align:left; dom-dir:ltr"><c>Ahora empieza a analizar el texto:</c></p>
+<p style="Normal" xid="61" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="64" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">for mo in re.finditer(token_regex, code):</c></p>
+<p style="Normal" xid="65" props="text-align:left; dom-dir:ltr"><c>Va buscando coincidencias en el texto de entrada code.</c></p>
+<p style="Normal" xid="66" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="67" props="text-align:left; dom-dir:ltr"><c>Dentro del for:</c></p>
+<p style="Normal" xid="68" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="72" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">kind = mo.lastgroup</c></p>
+<p style="Normal" xid="73" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">value = mo.group()</c></p>
+<p style="Normal" xid="504" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="74" props="text-align:left; dom-dir:ltr"><c>kind es el tipo de token que encontró (STRING, ID, ASSIGN, etc.).</c></p>
+<p style="Normal" xid="75" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="76" props="text-align:left; dom-dir:ltr"><c>value es el texto que encontró (por ejemplo, "Hola mundo", o =).</c></p>
+<p style="Normal" xid="77" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="78" props="text-align:left; dom-dir:ltr"><c>Ahora se hacen decisiones:</c></p>
+<p style="Normal" xid="83" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="505" props="text-align:left; dom-dir:ltr"><c></c><c props="font-style:italic; font-weight:bold">if kind == 'SKIP':</c></p>
+<p style="Normal" xid="84" props="text-align:left; dom-dir:ltr"><c props="font-weight:bold; font-style:italic">        continue</c></p>
+<p style="Normal" xid="85" props="text-align:left; dom-dir:ltr"><c>Si es un espacio o tabulación, lo ignoramos (porque no nos importa).</c></p>
+<p style="Normal" xid="86" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="87" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">elif kind == 'MISMATCH':</c></p>
+<p style="Normal" xid="91" props="text-align:left; dom-dir:ltr"><c>	</c><c props="font-style:italic; font-weight:bold">raise RuntimeError(f"Caracter inesperado: {value!r}")</c></p>
+<p style="Normal" xid="506" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="92" props="text-align:left; dom-dir:ltr"><c>Si encontramos algo que no reconocemos, tiramos un error diciendo "carácter inesperado".</c></p>
+<p style="Normal" xid="93" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="97" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		else:</c></p>
+<p style="Normal" xid="98" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">			yield kind, value</c></p>
+<p style="Normal" xid="507" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="99" props="text-align:left; dom-dir:ltr"><c>Si es algo válido, lo devolvemos como un par: (tipo de token, valor).</c></p>
+<p style="Normal" xid="100" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="101" props="text-align:left; dom-dir:ltr"><c>Ejemplo final del lexer:</c></p>
+<p style="Normal" xid="102" props="text-align:left; dom-dir:ltr"><c>Si el texto es:</c></p>
+<p style="Normal" xid="103" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="107" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">show = "Hola"</c></p>
+<p style="Normal" xid="108" props="text-align:left; dom-dir:ltr"><c>El lexer generaría:</c></p>
+<p style="Normal" xid="109" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="113" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">('ID', 'show')</c></p>
+<p style="Normal" xid="114" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">('ASSIGN', '=')</c></p>
+<p style="Normal" xid="115" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">('STRING', '"Hola"')</c></p>
+<p style="Normal" xid="508" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="116" props="text-align:left; dom-dir:ltr"><c props="font-weight:bold; text-decoration:underline; font-style:italic">3. Interpretar los tokens</c></p>
+<p style="Normal" xid="117" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="120" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">def interpret_tokens(tokens):</c></p>
+<p style="Normal" xid="121" props="text-align:left; dom-dir:ltr"><c>Creamos una función que recibe una lista de tokens, y su trabajo es interpretar qué significan.</c></p>
+<p style="Normal" xid="122" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="123" props="text-align:left; dom-dir:ltr"><c>Dentro:</c></p>
+<p style="Normal" xid="124" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="125" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="128" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">if tokens[0][0] == 'ID' and tokens[0][1] == 'show' and tokens[1][0] == 'ASSIGN':</c></p>
+<p style="Normal" xid="129" props="text-align:left; dom-dir:ltr"><c>Preguntamos:</c></p>
+<p style="Normal" xid="130" props="text-align:left; dom-dir:ltr"><c>¿La primera palabra es show y luego viene un =?</c></p>
+<p style="Normal" xid="131" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="135" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">if tokens[2][0] == 'STRING':</c></p>
+<p style="Normal" xid="136" props="text-align:left; dom-dir:ltr"><c>Luego:</c></p>
+<p style="Normal" xid="137" props="text-align:left; dom-dir:ltr"><c>¿Después viene un texto entre comillas?</c></p>
+<p style="Normal" xid="138" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="139" props="text-align:left; dom-dir:ltr"><c>Si todo eso es cierto:</c></p>
+<p style="Normal" xid="140" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="141" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="144" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">text = tokens[2][1][1:-1]</c></p>
+<p style="Normal" xid="145" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c><c props="font-style:italic; font-weight:bold">print(text)</c></p>
+<p style="Normal" xid="510" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="146" props="text-align:left; dom-dir:ltr"><c>Saca las comillas del texto,</c></p>
+<p style="Normal" xid="147" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="148" props="text-align:left; dom-dir:ltr"><c>Imprime el contenido en pantalla.</c></p>
+<p style="Normal" xid="149" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="150" props="text-align:left; dom-dir:ltr"><c>Ejemplo:</c></p>
+<p style="Normal" xid="151" props="text-align:left; dom-dir:ltr"><c>Si los tokens eran show = "Hola", el programa mostraría:</c></p>
+<p style="Normal" xid="152" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="156" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">Hola</c></p>
+<p style="Normal" xid="511" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="157" props="text-align:left; dom-dir:ltr"><c props="text-decoration:underline; font-weight:bold; font-style:normal">4. Leer el archivo .rp</c></p>
+<p style="Normal" xid="158" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="161" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">def run_rouy_file(file_path):</c></p>
+<p style="Normal" xid="162" props="text-align:left; dom-dir:ltr"><c>Esta función abre un archivo que el usuario le pasa (por ejemplo, historia.rp).</c></p>
+<p style="Normal" xid="164" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="169" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">with open(file_path, 'r') as file:</c></p>
+<p style="Normal" xid="170" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">	lines = file.readlines()</c></p>
+<p style="Normal" xid="512" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="171" props="text-align:left; dom-dir:ltr"><c>Abre el archivo,</c></p>
+<p style="Normal" xid="172" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="173" props="text-align:left; dom-dir:ltr"><c>Lee todas las líneas del archivo en una lista.</c></p>
+<p style="Normal" xid="174" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="175" props="text-align:left; dom-dir:ltr"><c>Para cada línea:</c></p>
+<p style="Normal" xid="177" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="180" props="text-align:left; dom-dir:ltr"><c>	</c><c props="font-style:italic; font-weight:bold">	for line in lines:</c></p>
+<p style="Normal" xid="181" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">			tokens = list(lexer(line.strip()))</c></p>
+<p style="Normal" xid="182" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">			interpret_tokens(tokens)</c></p>
+<p style="Normal" xid="183" props="text-align:left; dom-dir:ltr"><c>Elimina espacios sobrantes,</c></p>
+<p style="Normal" xid="184" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="185" props="text-align:left; dom-dir:ltr"><c>Convierte la línea en tokens usando lexer,</c></p>
+<p style="Normal" xid="186" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="187" props="text-align:left; dom-dir:ltr"><c>Interpreta los tokens usando interpret_tokens.</c></p>
+<p style="Normal" xid="188" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="189" props="text-align:left; dom-dir:ltr"><c props="text-decoration:underline; font-weight:bold">5. Otro interpretar (viejo)</c></p>
+<p style="Normal" xid="190" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="193" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">def interpret_line(line):</c></p>
+<p style="Normal" xid="194" props="text-align:left; dom-dir:ltr"><c>Esta función era del código original:</c></p>
+<p style="Normal" xid="195" props="text-align:left; dom-dir:ltr"><c>Interpretaba el texto sin lexer, directamente viendo si empezaba con show =.</c></p>
+<p style="Normal" xid="196" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="197" props="text-align:left; dom-dir:ltr"><c>No se usa ahora, porque ya tenemos el lexer. (Aunque podrías borrarla más adelante si quieres).</c></p>
+<p style="Normal" xid="198" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="199" props="text-align:left; dom-dir:ltr"><c>6. Puntos de entrada</c></p>
+<p style="Normal" xid="200" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="203" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">if __name__ == "__main__":</c></p>
+<p style="Normal" xid="204" props="text-align:left; dom-dir:ltr"><c>Esta línea dice:</c></p>
+<p style="Normal" xid="205" props="text-align:left; dom-dir:ltr"><c>"Si ejecutamos este archivo directamente, hacé esto:"</c></p>
+<p style="Normal" xid="206" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="207" props="text-align:left; dom-dir:ltr"><c>Dentro:</c></p>
+<p style="Normal" xid="208" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="209" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="212" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">	if len(sys.argv) &lt; 2:</c></p>
+<p style="Normal" xid="213" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		print("Usage: python roupycore.py &lt;file.rp&gt;")</c></p>
+<p style="Normal" xid="513" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="214" props="text-align:left; dom-dir:ltr"><c>Si el usuario no escribió el nombre de un archivo .rp,</c></p>
+<p style="Normal" xid="215" props="text-align:left; dom-dir:ltr"><c>mostramos un mensaje explicándole cómo debe usar el programa.</c></p>
+<p style="Normal" xid="217" props="text-align:left; dom-dir:ltr"></p>
+<p style="Normal" xid="220" props="text-align:left; dom-dir:ltr"><c>	</c><c props="font-style:italic; font-weight:bold">else:</c></p>
+<p style="Normal" xid="221" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		filename = sys.argv[1]</c></p>
+<p style="Normal" xid="222" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">		run_rouy_file(filename)</c></p>
+<p style="Normal" xid="514" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold"></c></p>
+<p style="Normal" xid="223" props="text-align:left; dom-dir:ltr"><c>Si el usuario sí pasó un archivo,</c></p>
+<p style="Normal" xid="224" props="text-align:left; dom-dir:ltr"><c>lo guardamos como filename,</c></p>
+<p style="Normal" xid="225" props="text-align:left; dom-dir:ltr"><c>y ejecutamos </c><c props="font-style:italic; font-weight:bold">run_rouy_file(filename).</c></p>
+<p style="Normal" xid="226" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="233" props="text-align:left; dom-dir:ltr"><c props="font-style:italic; font-weight:bold">python roupycore.py historia.rp</c></p>
+<p style="Normal" xid="234" props="text-align:left; dom-dir:ltr"><c>Se abre el archivo historia.rp.</c></p>
+<p style="Normal" xid="235" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="236" props="text-align:left; dom-dir:ltr"><c>Se lee cada línea.</c></p>
+<p style="Normal" xid="237" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="238" props="text-align:left; dom-dir:ltr"><c>Cada línea se convierte en tokens.</c></p>
+<p style="Normal" xid="239" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="240" props="text-align:left; dom-dir:ltr"><c>Se interpretan los tokens.</c></p>
+<p style="Normal" xid="241" props="text-align:left; dom-dir:ltr"><c></c></p>
+<p style="Normal" xid="242" props="text-align:left; dom-dir:ltr"><c>Si la línea dice show = "Hola", el programa escribe Hola en pantalla.</c></p>
+</section>
+</abiword>
