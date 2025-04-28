@@ -2,29 +2,14 @@ import tkinter as tk
 from tkinter import filedialog
 import sys
 
+from roupycore import run_roupy_code
 #Interpretar codigo Roupy
-def run_roupy_code(code):
-    lines = code.strip().split("\n")
-    output = ""
-    for line in lines:
-        line = line.strip()
-        if line.startswith("show = "):
-            text_to_show = line.split("=", 1)[1].strip()
-
-            # Verificar si el texto está entre comillas
-            if text_to_show.startswith('"') and text_to_show.endswith('"'):
-                text_to_show = text_to_show[1:-1]  # Eliminar las comillas
-                output += text_to_show + "\n"
-            else:
-                output += "Syntax Error: Expected text in double quotes.\n"
-    return output
-
-	
-#Funcion CUAndo PRESIONAS RUN
-
 def run_code():
 	code = text_editor.get("1.0", tk.END)
-	result = run_roupy_code(code)
+	try:
+		result = run_roupy_code(code)
+	except Exception as e:
+		result = f"Error al interpretar el codigo: {str(e)}"
 	output_text.delete("1.0", tk.END)
 	output_text.insert(tk.END, result)
 	
