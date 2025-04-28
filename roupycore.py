@@ -3,12 +3,15 @@
 import sys
 import re
 
+variables = {}
 # EL LEXER: CONVIERTE EL CODIGO FUENTE EN UNA LISTA DE TOKENS
 def lexer(code):
     token_patterns = [
         ('STRING', r'"[^"]*"'),
+        ('NUMBER', r'\d+'),
         ('ID', r'[A-Za-z_][A-Za-z0-9_]*'),
         ('ASSIGN', r'='),
+        ('COMMA', r','),
         ('NEWLINE', r'\n'),
         ('SKIP', r'[ \t]+'),
         ('MISMATCH', r'.'),
@@ -28,15 +31,55 @@ def lexer(code):
 
 # Función que interpreta una lista de tokens y devuelve el resultado como string
 def interpret_tokens(tokens):
-    if tokens and tokens[0][0] == 'ID' and tokens[0][1] == 'show' and tokens[1][0] == 'ASSIGN':
-        if tokens[2][0] == 'STRING':
-            text = tokens[2][1][1:-1]  # Eliminar las comillas
-            return text
+    if not tokens:
+        return ""
+
+    if tokens[0][0] == 'ID' and tokens[1][0] == 'ASSIGN':
+        var_name = tokens[0][1]
+        value_tokens = tokens[2:]  # Todos los tokens después del '='
+
+        if var_name == 'show':
+            parts = []
+            expecting_value = True  # esperamos un valor, no una coma
+
+            for token in value_tokens:
+                if expecting_value:
+                    if token[0] == 'STRING':
+                        parts.append(token[1][1:-1])  # Agregar texto (sin comillas)
+                    elif token[0] == 'ID':
+                        if token[1] in variables:
+                            parts.append(str(variables[token[1]]))  # Agregar valor de variable
+                        else:
+                            return f"Name Error: Variable '{token[1]}' not found."
+                    else:
+                        return "Syntax Error: show must have strings or variable names."
+                    expecting_value = False
+                else:
+                    if token[0] != 'COMMA':
+                        return "Syntax Error: Expected a comma between values."
+                    expecting_value = True
+
+            if expecting_value:
+                return "Syntax Error: Trailing comma at the end."
+
+            return " ".join(parts)  # Unir las partes con espacio
         else:
-            return "Syntax Error: Expected a string value enclosed in double quotes."
+            # Asignar variables
+            if len(value_tokens) != 1:
+                return "Syntax Error: Only one value can be assigned to a variable."
+            
+            value_token = value_tokens[0]
+            if value_token[0] == 'STRING':
+                variables[var_name] = value_token[1][1:-1]
+            elif value_token[0] == 'NUMBER':
+                variables[var_name] = int(value_token[1])
+            else:
+                return "Syntax Error: Only strings and integers can be assigned."
+            return ""
     else:
         return "Syntax Error: Invalid assignment."
 
+				
 # ✅ Nueva función para que el IDE pueda usar
 def run_roupy_code(code):
     lines = code.strip().split('\n')
