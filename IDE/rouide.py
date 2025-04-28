@@ -4,14 +4,21 @@ import sys
 
 #Interpretar codigo Roupy
 def run_roupy_code(code):
-	lines = code.strip().split("\n")
-	output = ""
-	for line in lines:
-		line = line.strip()
-		if line.startswith("show = "):
-			text_to_show = line.split("=", 1)[1].strip().strip('"')
-			output += text_to_show + "\n"
-	return output
+    lines = code.strip().split("\n")
+    output = ""
+    for line in lines:
+        line = line.strip()
+        if line.startswith("show = "):
+            text_to_show = line.split("=", 1)[1].strip()
+
+            # Verificar si el texto está entre comillas
+            if text_to_show.startswith('"') and text_to_show.endswith('"'):
+                text_to_show = text_to_show[1:-1]  # Eliminar las comillas
+                output += text_to_show + "\n"
+            else:
+                output += "Syntax Error: Expected text in double quotes.\n"
+    return output
+
 	
 #Funcion CUAndo PRESIONAS RUN
 
