@@ -1,20 +1,8 @@
+import sys
+from parser import run_roupy_code
 from lexer import lexer
 from parser import interpret_tokens
 
-def run_roupy_code(code):
-    lines = code.strip().split('\n')
-    output = []
-    
-    for line in lines:
-        if not line.strip():
-            continue  # Saltar líneas vacías
-        tokens = list(lexer(line.strip()))
-        result = interpret_tokens(tokens)
-        output.append(result)
-    
-    return "\n".join(output)
-
-# Puntos de entrada si se ejecuta desde consola
 def run_roupy_file(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
@@ -28,4 +16,3 @@ if __name__ == "__main__":
     else:
         filename = sys.argv[1]
         run_roupy_file(filename)
-

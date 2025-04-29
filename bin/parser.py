@@ -1,3 +1,5 @@
+from lexer import lexer
+
 variables = {}
 
 def interpret_tokens(tokens):
@@ -6,19 +8,19 @@ def interpret_tokens(tokens):
 
     if tokens[0][0] == 'ID' and tokens[1][0] == 'ASSIGN':
         var_name = tokens[0][1]
-        value_tokens = tokens[2:]  # Todos los tokens después del '='
+        value_tokens = tokens[2:]
 
         if var_name == 'show':
             parts = []
-            expecting_value = True  # esperamos un valor, no una coma
+            expecting_value = True
 
             for token in value_tokens:
                 if expecting_value:
                     if token[0] == 'STRING':
-                        parts.append(token[1][1:-1])  # Agregar texto (sin comillas)
+                        parts.append(token[1][1:-1])
                     elif token[0] == 'ID':
                         if token[1] in variables:
-                            parts.append(str(variables[token[1]]))  # Agregar valor de variable
+                            parts.append(str(variables[token[1]]))
                         else:
                             return f"Name Error: Variable '{token[1]}' not found."
                     else:
@@ -32,12 +34,11 @@ def interpret_tokens(tokens):
             if expecting_value:
                 return "Syntax Error: Trailing comma at the end."
 
-            return " ".join(parts)  # Unir las partes con espacio
+            return " ".join(parts)
         else:
-            # Asignar variables
             if len(value_tokens) != 1:
                 return "Syntax Error: Only one value can be assigned to a variable."
-            
+
             value_token = value_tokens[0]
             if value_token[0] == 'STRING':
                 variables[var_name] = value_token[1][1:-1]
@@ -45,8 +46,21 @@ def interpret_tokens(tokens):
                 variables[var_name] = int(value_token[1])
             else:
                 return "Syntax Error: Only strings and integers can be assigned."
+
             return ""
     else:
         return "Syntax Error: Invalid assignment."
 
-				
+
+def run_roupy_code(code):
+    lines = code.strip().split('\n')
+    output = []
+
+    for line in lines:
+        if not line.strip():
+            continue
+        tokens = list(lexer(line.strip()))
+        result = interpret_tokens(tokens)
+        output.append(result)
+
+    return "\n".join(output)

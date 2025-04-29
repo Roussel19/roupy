@@ -11,9 +11,9 @@ def lexer(code):
         ('SKIP', r'[ \t]+'),
         ('MISMATCH', r'.'),
     ]
-    
+
     token_regex = '|'.join(f'(?P<{pair[0]}>{pair[1]})' for pair in token_patterns)
-    
+
     for mo in re.finditer(token_regex, code):
         kind = mo.lastgroup
         value = mo.group()
@@ -23,3 +23,5 @@ def lexer(code):
             raise RuntimeError(f"Caracter inesperado: {value!r}")
         else:
             yield kind, value
+
+
