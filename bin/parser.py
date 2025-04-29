@@ -61,6 +61,7 @@ def run_roupy_code(code):
             continue
         tokens = list(lexer(line.strip()))
         result = interpret_tokens(tokens)
-        output.append(result)
+        if result:
+	        output.append(result)
 
     return "\n".join(output)
