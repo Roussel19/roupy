@@ -2,6 +2,7 @@ import re
 
 def lexer(code):
     token_patterns = [
+        ('CHAR', r"'[^']'"),
         ('STRING', r'"[^"]*"'),
         ('FLOAT', r'\d+\.\d+'),     # <-- ¡Primero va FLOAT!
         ('NUMBER', r'\d+'),
