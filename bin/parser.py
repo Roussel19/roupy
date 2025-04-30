@@ -10,6 +10,7 @@ def interpret_tokens(tokens):
         var_name = tokens[0][1]
         value_tokens = tokens[2:]
 
+        # Mostrar valores con show
         if var_name == 'show':
             parts = []
             expecting_value = True
@@ -35,17 +36,22 @@ def interpret_tokens(tokens):
                 return "Syntax Error: Trailing comma at the end."
 
             return " ".join(parts)
+
+        # Asignación de variable normal
         else:
             if len(value_tokens) != 1:
                 return "Syntax Error: Only one value can be assigned to a variable."
 
             value_token = value_tokens[0]
+
             if value_token[0] == 'STRING':
                 variables[var_name] = value_token[1][1:-1]
             elif value_token[0] == 'NUMBER':
                 variables[var_name] = int(value_token[1])
+            elif value_token[0] == 'FLOAT':
+                variables[var_name] = float(value_token[1])
             else:
-                return "Syntax Error: Only strings and integers can be assigned."
+                return "Syntax Error: Only strings, integers, and floats can be assigned."
 
             return ""
     else:
@@ -62,6 +68,6 @@ def run_roupy_code(code):
         tokens = list(lexer(line.strip()))
         result = interpret_tokens(tokens)
         if result:
-	        output.append(result)
+            output.append(result)
 
     return "\n".join(output)

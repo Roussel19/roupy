@@ -3,6 +3,7 @@ import re
 def lexer(code):
     token_patterns = [
         ('STRING', r'"[^"]*"'),
+        ('FLOAT', r'\d+\.\d+'),     # <-- ¡Primero va FLOAT!
         ('NUMBER', r'\d+'),
         ('ID', r'[A-Za-z_][A-Za-z0-9_]*'),
         ('ASSIGN', r'='),
@@ -23,5 +24,3 @@ def lexer(code):
             raise RuntimeError(f"Caracter inesperado: {value!r}")
         else:
             yield kind, value
-
-
